@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
@@ -16,7 +16,7 @@ import { ModalComponent } from '../modal/modal.component';
     DxButtonModule,
     ModalComponent,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -26,7 +26,10 @@ export class ListComponent {
   isPopupVisible = false;
   selectedContact: Contact | null = null;
 
-  constructor(private contactService: ContactService) {
+  constructor(
+    private contactService: ContactService,
+    private cdr: ChangeDetectorRef
+  ) {
     this.contacts = this.contactService.getContacts();
   }
 
@@ -77,6 +80,7 @@ export class ListComponent {
 
   private refreshContacts(): void {
     this.contacts = this.contactService.getContacts();
+    this.cdr.markForCheck();
   }
 
   private generateId(): string {

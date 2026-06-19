@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
@@ -12,7 +12,7 @@ type ModalMode = 'create' | 'view' | 'edit';
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, DxTextBoxModule, DxSelectBoxModule, DxButtonModule],
+  imports: [DxTextBoxModule, DxSelectBoxModule, DxButtonModule],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

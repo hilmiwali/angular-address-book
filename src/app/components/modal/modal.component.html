@@ -7,7 +7,9 @@
       [readOnly]="isReadOnly"
       placeholder="Enter name"
     ></dx-text-box>
-    <span class="error-message" *ngIf="touched['name'] && nameError">{{ nameError }}</span>
+    @if (touched['name'] && nameError) {
+      <span class="error-message">{{ nameError }}</span>
+    }
   </div>
 
   <div class="form-group">
@@ -18,7 +20,9 @@
       [readOnly]="isReadOnly"
       placeholder="Enter email"
     ></dx-text-box>
-    <span class="error-message" *ngIf="touched['email'] && emailError">{{ emailError }}</span>
+    @if (touched['email'] && emailError) {
+      <span class="error-message">{{ emailError }}</span>
+    }
   </div>
 
   <div class="form-group">
@@ -29,7 +33,9 @@
       [readOnly]="isReadOnly"
       placeholder="Enter phone number"
     ></dx-text-box>
-    <span class="error-message" *ngIf="touched['phone'] && phoneError">{{ phoneError }}</span>
+    @if (touched['phone'] && phoneError) {
+      <span class="error-message">{{ phoneError }}</span>
+    }
   </div>
 
   <div class="form-group">
@@ -62,7 +68,9 @@
       [readOnly]="isReadOnly"
       placeholder="Enter postcode"
     ></dx-text-box>
-    <span class="error-message" *ngIf="touched['postcode'] && postcodeError">{{ postcodeError }}</span>
+    @if (touched['postcode'] && postcodeError) {
+      <span class="error-message">{{ postcodeError }}</span>
+    }
   </div>
 
   <div class="form-group">
@@ -76,28 +84,31 @@
   </div>
 
   <div class="form-actions">
-    <dx-button
-      *ngIf="showCreateButton"
-      text="Create"
-      type="default"
-      [disabled]="!isFormValid"
-      (onClick)="onCreateClick()"
-    ></dx-button>
+    @if (showCreateButton) {
+      <dx-button
+        text="Create"
+        type="default"
+        [disabled]="!isFormValid"
+        (onClick)="onCreateClick()"
+      ></dx-button>
+    }
 
-    <dx-button
-      *ngIf="showEditButton"
-      text="Edit"
-      type="default"
-      (onClick)="onEditClick()"
-    ></dx-button>
+    @if (showEditButton) {
+      <dx-button
+        text="Edit"
+        type="default"
+        (onClick)="onEditClick()"
+      ></dx-button>
+    }
 
-    <dx-button
-      *ngIf="showSaveButton"
-      text="Save"
-      type="success"
-      [disabled]="!isFormValid"
-      (onClick)="onSaveClick()"
-    ></dx-button>
+    @if (showSaveButton) {
+      <dx-button
+        text="Save"
+        type="success"
+        [disabled]="!isFormValid"
+        (onClick)="onSaveClick()"
+      ></dx-button>
+    }
 
     <dx-button
       text="Cancel"
