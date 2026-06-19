@@ -1,0 +1,108 @@
+<div class="modal-form">
+  <div class="form-group">
+    <label class="form-label">Name <span class="required">*</span></label>
+    <dx-text-box
+      [value]="name"
+      (onValueChanged)="onNameChanged($event.value)"
+      [readOnly]="isReadOnly"
+      placeholder="Enter name"
+    ></dx-text-box>
+    <span class="error-message" *ngIf="touched['name'] && nameError">{{ nameError }}</span>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <dx-text-box
+      [value]="email"
+      (onValueChanged)="onEmailChanged($event.value)"
+      [readOnly]="isReadOnly"
+      placeholder="Enter email"
+    ></dx-text-box>
+    <span class="error-message" *ngIf="touched['email'] && emailError">{{ emailError }}</span>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Phone</label>
+    <dx-text-box
+      [value]="phone"
+      (onValueChanged)="onPhoneChanged($event.value)"
+      [readOnly]="isReadOnly"
+      placeholder="Enter phone number"
+    ></dx-text-box>
+    <span class="error-message" *ngIf="touched['phone'] && phoneError">{{ phoneError }}</span>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Street</label>
+    <dx-text-box
+      [value]="street"
+      (onValueChanged)="onStreetChanged($event.value)"
+      [readOnly]="isReadOnly"
+      placeholder="Enter street address"
+    ></dx-text-box>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">State</label>
+    <dx-select-box
+      [items]="stateList"
+      [value]="state"
+      (onValueChanged)="onStateChanged($event.value)"
+      [readOnly]="isReadOnly"
+      placeholder="Select state"
+      [searchEnabled]="true"
+    ></dx-select-box>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Postcode</label>
+    <dx-text-box
+      [value]="postcode"
+      (onValueChanged)="onPostcodeChanged($event.value)"
+      [readOnly]="isReadOnly"
+      placeholder="Enter postcode"
+    ></dx-text-box>
+    <span class="error-message" *ngIf="touched['postcode'] && postcodeError">{{ postcodeError }}</span>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Description</label>
+    <dx-text-box
+      [value]="description"
+      (onValueChanged)="onDescriptionChanged($event.value)"
+      [readOnly]="isReadOnly"
+      placeholder="Enter description"
+    ></dx-text-box>
+  </div>
+
+  <div class="form-actions">
+    <dx-button
+      *ngIf="showCreateButton"
+      text="Create"
+      type="default"
+      [disabled]="!isFormValid"
+      (onClick)="onCreateClick()"
+    ></dx-button>
+
+    <dx-button
+      *ngIf="showEditButton"
+      text="Edit"
+      type="default"
+      (onClick)="onEditClick()"
+    ></dx-button>
+
+    <dx-button
+      *ngIf="showSaveButton"
+      text="Save"
+      type="success"
+      [disabled]="!isFormValid"
+      (onClick)="onSaveClick()"
+    ></dx-button>
+
+    <dx-button
+      text="Cancel"
+      type="normal"
+      (onClick)="onCancelClick()"
+    ></dx-button>
+  </div>
+</div>

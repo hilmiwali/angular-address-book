@@ -1,0 +1,61 @@
+<div class="address-book-container">
+  <dx-data-grid
+    [dataSource]="contacts"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    [rowAlternationEnabled]="true"
+    (onRowClick)="onRowClick($event)"
+    keyExpr="id"
+  >
+    <dxo-toolbar>
+      <dxi-item location="before">
+        <div *dxTemplate>
+          <h2 class="grid-title">Address Book</h2>
+        </div>
+      </dxi-item>
+      <dxi-item location="after">
+        <div *dxTemplate>
+          <dx-button
+            text="Add"
+            icon="plus"
+            type="default"
+            (onClick)="onAddClick()"
+          ></dx-button>
+        </div>
+      </dxi-item>
+    </dxo-toolbar>
+
+    <dxi-column dataField="name" caption="Name"></dxi-column>
+    <dxi-column dataField="email" caption="Email"></dxi-column>
+    <dxi-column dataField="phone" caption="Phone"></dxi-column>
+    <dxi-column
+      caption="Address"
+      [calculateCellValue]="calculateAddressValue"
+    ></dxi-column>
+    <dxi-column type="buttons" caption="" [width]="80">
+      <dxi-button
+        icon="trash"
+        hint="Delete"
+        [onClick]="onDeleteButtonClick"
+      ></dxi-button>
+    </dxi-column>
+  </dx-data-grid>
+
+  <dx-popup
+    [(visible)]="isPopupVisible"
+    [showTitle]="true"
+    title="Contact"
+    [dragEnabled]="false"
+    [showCloseButton]="true"
+    [width]="500"
+    [height]="'auto'"
+  >
+    <div *dxTemplate="let data of 'content'">
+      <app-modal
+        [contactData]="selectedContact"
+        (onSave)="handleSave($any($event))"
+        (onCancel)="handleCancel()"
+      ></app-modal>
+    </div>
+  </dx-popup>
+</div>
